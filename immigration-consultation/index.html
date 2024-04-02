@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Immigration Consultation Inquiry Form</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Immigration Consultation Inquiry Form Section -->
+<div class="container">
+  <h2>Immigration Consultation Inquiry Form</h2>
+  <!-- Immigration Consultation Inquiry Form -->
+  <form id="inquiryForm">
+    <div class="form-group">
+      <label for="consultantName">Consultant Name:</label>
+      <input type="text" class="form-control" id="consultantName" placeholder="Enter Consultant Name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter Email">
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number">
+    </div>
+    <div class="form-group">
+      <label for="inquiryCategory">Inquiry Category:</label>
+      <select class="form-control" id="inquiryCategory">
+        <option value="visa">Visa</option>
+        <option value="citizenship">Citizenship</option>
+        <option value="immigration">Immigration</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="inquiryDetails">Inquiry Details:</label>
+      <textarea class="form-control" id="inquiryDetails" rows="3" placeholder="Enter Inquiry Details"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<!-- JavaScript Section -->
+<script>
+  // JavaScript code for form submission and validation
+  document.getElementById('inquiryForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Extracting values from form inputs
+    var consultantName = document.getElementById('consultantName').value;
+    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
+    var inquiryCategory = document.getElementById('inquiryCategory').value;
+    var inquiryDetails = document.getElementById('inquiryDetails').value;
+
+    // Validation
+    if (!isValidConsultantName(consultantName)) {
+      alert('Please enter a valid consultant name.');
+      return;
+    }
+    if (!isValidPhoneNumber(phone)) {
+      alert('Please enter a valid phone number.');
+      return;
+    }
+
+    // If validation passes, replace the form with home page
+    // Here, you can redirect to the home page or display any other content
+    document.body.innerHTML = `
+      <div class="container">
+        <h2>Thank You!</h2>
+        <p>Your inquiry has been submitted successfully.</p>
+        <!-- Add content for the home page here -->
+      </div>
+    `;
+  });
+
+  // Function to validate consultant name
+  function isValidConsultantName(name) {
+    return /^[a-zA-Z\s]+$/.test(name);
+  }
+
+  // Function to validate phone number
+  function isValidPhoneNumber(phone) {
+    return /^\d{10}$/.test(phone); // Assuming phone number should have 10 digits
+  }
+</script>
+
+</body>
+</html>
