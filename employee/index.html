@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Details Form</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Employee Details Form Section -->
+<div class="container">
+  <h2>Employee Details Form</h2>
+  <!-- Employee Details Form -->
+  <form id="employeeForm">
+    <div class="form-group">
+      <label for="id">ID:</label>
+      <input type="text" class="form-control" id="id" placeholder="Enter ID">
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+      <label for="salary">Salary:</label>
+      <input type="text" class="form-control" id="salary" placeholder="Enter Salary">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter Email">
+    </div>
+    <div class="form-group">
+      <label for="department">Department:</label>
+      <input type="text" class="form-control" id="department" placeholder="Enter Department Name">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<!-- JavaScript Section -->
+<script>
+  // JavaScript code for form submission and validation
+  document.getElementById('employeeForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Extracting values from form inputs
+    var id = document.getElementById('id').value;
+    var name = document.getElementById('name').value;
+    var salary = document.getElementById('salary').value;
+    var email = document.getElementById('email').value;
+    var department = document.getElementById('department').value;
+
+    // Validation
+    if (!/^\d+$/.test(salary)) {
+      alert('Salary must contain digits only.');
+      return;
+    }
+    if (!isValidEmail(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Display filled details in alert box
+    var details = `ID: ${id}\nName: ${name}\nSalary: ${salary}\nEmail: ${email}\nDepartment: ${department}`;
+    alert(details);
+  });
+
+  // Function to validate email address
+  function isValidEmail(email) {
+    // Regular expression for validating email
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+</script>
+
+</body>
+</html>
