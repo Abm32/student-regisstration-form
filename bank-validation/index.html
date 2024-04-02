@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Detail Form</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Bank Detail Form Section -->
+<div class="container">
+  <h2>Bank Detail Form</h2>
+  <!-- Bank Detail Form -->
+  <form id="bankDetailForm">
+    <div class="form-group">
+      <label for="customerId">Customer ID:</label>
+      <input type="text" class="form-control" id="customerId" placeholder="Enter Customer ID">
+    </div>
+    <div class="form-group">
+      <label for="customerName">Customer Name:</label>
+      <input type="text" class="form-control" id="customerName" placeholder="Enter Customer Name">
+    </div>
+    <div class="form-group">
+      <label for="accountNo">Account Number:</label>
+      <input type="text" class="form-control" id="accountNo" placeholder="Enter Account Number">
+    </div>
+    <div class="form-group">
+      <label for="ifscCode">IFSC Code:</label>
+      <input type="text" class="form-control" id="ifscCode" placeholder="Enter IFSC Code">
+    </div>
+    <div class="form-group">
+      <label for="accountType">Account Type:</label>
+      <select class="form-control" id="accountType">
+        <option value="saving">Saving</option>
+        <option value="current">Current</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<!-- JavaScript Section -->
+<script>
+  // JavaScript code for form submission and validation
+  document.getElementById('bankDetailForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Extracting values from form inputs
+    var customerId = document.getElementById('customerId').value;
+    var customerName = document.getElementById('customerName').value;
+    var accountNo = document.getElementById('accountNo').value;
+    var ifscCode = document.getElementById('ifscCode').value;
+    var accountType = document.getElementById('accountType').value;
+
+    // Validation
+    if (!isValidCustomerId(customerId)) {
+      alert('Please enter a valid Customer ID.');
+      return;
+    }
+    if (!isValidCustomerName(customerName)) {
+      alert('Please enter a valid Customer Name.');
+      return;
+    }
+    if (!isValidAccountNo(accountNo)) {
+      alert('Please enter a valid Account Number.');
+      return;
+    }
+    if (!isValidIFSCCode(ifscCode)) {
+      alert('Please enter a valid IFSC Code.');
+      return;
+    }
+
+    // Display selected account type in alert box
+    alert('Selected Account Type: ' + accountType);
+
+    // Redirect to thank you page (you can replace window.location.href with your desired thank you page URL)
+    window.location.href = 'thankyou.html';
+  });
+
+  // Function to validate Customer ID
+  function isValidCustomerId(customerId) {
+    return /^\d{6}$/.test(customerId);
+  }
+
+  // Function to validate Customer Name
+  function isValidCustomerName(customerName) {
+    return /^[a-zA-Z\s]+$/.test(customerName);
+  }
+
+  // Function to validate Account Number
+  function isValidAccountNo(accountNo) {
+    return /^\d{10}$/.test(accountNo);
+  }
+
+  // Function to validate IFSC Code
+  function isValidIFSCCode(ifscCode) {
+    return /^[A-Za-z]{4}\d{6}$/.test(ifscCode);
+  }
+</script>
+
+</body>
+</html>
